@@ -178,7 +178,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-n", dest="num_sentence_training",
-                        default=1000, type=int, help="Number of sentence for training (default: 1000)")
+                        default=50000, type=int, help="Number of sentence for training (default: 50000)")
     parser.add_argument("-i", dest="num_EM_iteration",
                         default=5, type=int, help="Number of EM iterations (default: 5)")
     parser.add_argument("-t", dest="folder_data_training",
@@ -202,8 +202,8 @@ if __name__ == '__main__':
 
     t = train(sourceTrain, targetTrain, nbIte, nbMaxSentenceTraining)
     alignements = align(t, sourceTest, targetTest, nbMaxSentenceTest)
-    #write_alignements(alignements, outputAlign)
-    #write_translations(t, outputTranslation, nbMaxPair)
+    write_alignements(alignements, outputAlign)
+    write_translations(t, outputTranslation, nbMaxPair)
 
     time2 = time.clock()
     finalTime = time2 - time1
