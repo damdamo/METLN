@@ -23,3 +23,7 @@ python3 IBM1  [-h] [-n NUM_SENTENCE_TRAINING] [-i NUM_EM_ITERATION]
     if you have different names change into IBM1.py
     with the variable sourceTrain and targetTrain) <br/>
 [-s] Same as [-t] for data test <br/>
+
+### Example
+
+Output file can be seen in "outputAlign.txt" and "outputTranslation.txt"
