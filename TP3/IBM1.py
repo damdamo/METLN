@@ -58,14 +58,14 @@ def train(sourceFile, targetFile, nbIte, nbMaxSentence):
             for sWords in sSplit:
                 if (tWords, sWords) not in t:
                     t[tWords, sWords] = initValue
-
+    print('Algorithme EM en cours:')
     # Boucle EM
     while i < nbIte:
-        print(i)
         count = {}
         total = {}
         sTot = {}
         i += 1
+        print('Itération numéro {}'.format(i))
         for sSentence, tSentence in zip(sourceSentences, targetSentences):
             for tWords in tSentence:
                 sTot[tWords] = 0
@@ -178,7 +178,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-n", dest="num_sentence_training",
-                        default=50000, type=int, help="Number of sentence for training (default: 50000)")
+                        default=10000, type=int, help="Number of sentence for training (default: 10000)")
     parser.add_argument("-i", dest="num_EM_iteration",
                         default=5, type=int, help="Number of EM iterations (default: 5)")
     parser.add_argument("-t", dest="folder_data_training",
@@ -189,8 +189,8 @@ if __name__ == '__main__':
 
     nbMaxSentenceTraining = args.num_sentence_training
     nbIte = args.num_EM_iteration
-    sourceTrain = "{}/europarl_10k_es_en.es".format(args.folder_data_training)
-    targetTrain = "{}/europarl_10k_es_en.en".format(args.folder_data_training)
+    sourceTrain = "{}/europarl_50k_es_en.es".format(args.folder_data_training)
+    targetTrain = "{}/europarl_50k_es_en.en".format(args.folder_data_training)
     sourceTest = "{}/test.es".format(args.folder_data_test)
     targetTest = "{}/test.en".format(args.folder_data_test)
 
