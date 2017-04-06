@@ -19,7 +19,7 @@ python3 IBM1.py  [-h] [-n NUM_SENTENCE_TRAINING] [-i NUM_EM_ITERATION]
 [-n] Specify number of sentence for training  
 [-i] Specify number of iteration for training  
 [-t] Folder for data training (name files are predefined as:
-    "europarl_10k_es_en.es" and "europarl_10k_es_en.en"
+    "europarl_50k_es_en.es" and "europarl_50k_es_en.en"
     if you have different names change into IBM1.py
     with the variable sourceTrain and targetTrain)  
 [-s] Same as [-t] for data test  
