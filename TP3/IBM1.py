@@ -4,6 +4,7 @@ from itertools import chain
 import time
 import operator
 import argparse
+import json
 
 
 def returnSentences(sourceFile, targetFile, nbMaxSentence):
@@ -176,29 +177,35 @@ if __name__ == '__main__':
 
     time1 = time.clock()
 
+    with open("config.json") as configuration:
+        config = json.load(configuration)
+        print(config)
+
     parser = argparse.ArgumentParser()
     parser.add_argument("-n", dest="num_sentence_training",
-                        default=10000, type=int, help="Number of sentence for training (default: 10000)")
+                        default=config["training"]["nbSentenceDefault"], type=int, help="Number of sentence for training (default: 10000)")
     parser.add_argument("-i", dest="num_EM_iteration",
-                        default=5, type=int, help="Number of EM iterations (default: 5)")
+                        default=config["training"]["nbEMIterations"], type=int, help="Number of EM iterations (default: 5)")
     parser.add_argument("-t", dest="folder_data_training",
-                        default='data/training', type=str, help="Destination of the folder which contains data training (default: data/training)")
+                        default=config["training"]["folderTraining"], type=str, help="Destination of the folder which contains data training (default: data/training)")
     parser.add_argument("-s", dest="folder_data_test",
-                        default='data/test', type=str, help="Destination of the folder which contains data test (default: data/test)")
+                        default=config["testing"]["folderTest"], type=str, help="Destination of the folder which contains data test (default: data/test)")
     args = parser.parse_args()
 
     nbMaxSentenceTraining = args.num_sentence_training
     nbIte = args.num_EM_iteration
-    sourceTrain = "{}/europarl_50k_es_en.es".format(args.folder_data_training)
-    targetTrain = "{}/europarl_50k_es_en.en".format(args.folder_data_training)
-    sourceTest = "{}/test.es".format(args.folder_data_test)
-    targetTest = "{}/test.en".format(args.folder_data_test)
-
-    outputAlign = 'outputAlign.txt'
-    outputTranslation = 'outputTranslation.txt'
-
-    nbMaxSentenceTest = 100
-    nbMaxPair = 20
+    sourceTrain = "{}/{}".format(args.folder_data_training,
+                                 config["training"]["source"])
+    targetTrain = "{}/{}".format(args.folder_data_training,
+                                 config["training"]["target"])
+    sourceTest = "{}/{}".format(args.folder_data_test,
+                                config["testing"]["source"])
+    targetTest = "{}/{}".format(args.folder_data_test,
+                                config["testing"]["target"])
+    outputAlign = config["output"]["nameAlignementFile"]
+    outputTranslation = config["output"]["nameTranslationFile"]
+    nbMaxPair = config["output"]["nbPairTranslation"]
+    nbMaxSentenceTest = config["testing"]["nbMaxSentence"]
 
     t = train(sourceTrain, targetTrain, nbIte, nbMaxSentenceTraining)
     alignements = align(t, sourceTest, targetTest, nbMaxSentenceTest)

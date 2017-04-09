@@ -1,0 +1,21 @@
+{
+  "training":{
+    "folderTraining" : "data/training",
+    "source" : "europarl_50k_es_en.es",
+    "target" : "europarl_50k_es_en.en",
+    "nbSentenceDefault" : 10000,
+    "nbEMIterations" : 5
+  },
+  "testing":{
+    "folderTest" : "data/test",
+    "source" : "test.es",
+    "target" : "test.en",
+    "nbMaxSentence" : 100
+  },
+  "output" : {
+    "compareAlign" : "data/test/test.align",
+    "nameTranslationFile" : "outputTranslation.txt",
+    "nameAlignementFile" : "outputAlign.txt",
+    "nbPairTranslation" : 20
+  }
+}
