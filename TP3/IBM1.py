@@ -179,7 +179,6 @@ if __name__ == '__main__':
 
     with open("config.json") as configuration:
         config = json.load(configuration)
-        print(config)
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-n", dest="num_sentence_training",
