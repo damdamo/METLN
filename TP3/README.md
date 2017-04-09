@@ -27,3 +27,7 @@ python3 IBM1.py  [-h] [-n NUM_SENTENCE_TRAINING] [-i NUM_EM_ITERATION]
 ### Example
 
 Output file can be seen in "outputAlign.txt" and "outputTranslation.txt"
+
+### How modify all variables?
+
+Go to "config.json" and you can personalize name folders/files/values
